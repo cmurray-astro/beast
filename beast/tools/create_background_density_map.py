@@ -345,9 +345,9 @@ def make_background_map(
     n_x = len(ra_grid)
     n_y = len(dec_grid)
 
-    background_map = np.zeros((n_x, n_y))
-    nsources_map = np.zeros((n_x, n_y))
-    median_backgrounds = np.zeros((len(cat),))
+    background_map = np.full((n_x, n_y), np.nan)
+    nsources_map = np.full((n_x, n_y), np.nan)
+    median_backgrounds = np.full((len(cat),), np.nan)
     for x, y in xyrange(n_x, n_y):
         idxs = indices_for_pixel(pix_x, pix_y, x, y)
         n = len(idxs)
@@ -552,8 +552,8 @@ def make_source_dens_map(
 
     n_x = len(ra_grid) - 1
     n_y = len(dec_grid) - 1
-    npts_map = np.zeros([n_x, n_y], dtype=float)
-    source_dens = np.zeros(N_stars, dtype=float)
+    npts_map = np.full([n_x, n_y], np.nan) 
+    source_dens = np.full(N_stars, np.nan)
 
     # area of one pixel in square degrees
     pix_area = w.wcs.cdelt[0] * w.wcs.cdelt[1] * 3600 ** 2
